@@ -18,6 +18,7 @@ jobs:
             vtk>=9.2
             pyvista
       - name: Let's work it out
+        shell: bash
         run: |
           python test.py
       - name: Pump it louder

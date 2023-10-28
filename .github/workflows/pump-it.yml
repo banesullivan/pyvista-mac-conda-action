@@ -7,17 +7,20 @@ jobs:
       - name: Pump it up
         uses: actions/checkout@v2
       - name: Let's get it started
-        uses: conda-incubator/setup-miniconda@v2
+        uses: mamba-org/setup-micromamba@v1
         with:
-          miniconda-version: "latest"
-          activate-environment: pumpin
-      - name: Pump it louder
-        run: |
-          conda install -c conda-forge vtk pyvista
+          # the create command looks like this:
+          # `micromamba create -n test-env python=3.10 numpy`
+          environment-name: pumpin
+          init-shell: bash
+          create-args: >-
+            python=3.11
+            vtk>=9.2
+            pyvista
       - name: Let's work it out
         run: |
           python test.py
-      - name: Pump it up a little more
+      - name: Pump it louder
         uses: actions/upload-artifact@v2
         with:
           name: test-artifact

@@ -12,6 +12,7 @@ jobs:
           # the create command looks like this:
           # `micromamba create -n test-env python=3.10 numpy`
           environment-name: pumpin
+          cache-environment: true
           init-shell: bash
           create-args: >-
             python=3.11
@@ -20,7 +21,7 @@ jobs:
       - name: Let's work it out
         shell: bash
         run: |
-          python test.py
+          micromamba run -n pumpin python test.py
       - name: Pump it louder
         uses: actions/upload-artifact@v2
         with:
